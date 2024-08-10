@@ -1,17 +1,23 @@
 #!/usr/bin/env bash
-# make changes to config file using puppet
-file{ '/etc/ssh/ssh_config':
-  ensure    => 'present',
+# Using puppet to connect without password
+# define the type of file
+file {'/etc/ssh/ssh_config':
+# ensure the file exists before anything further
+  ensure => present,
 }
-file_line {'Turn off passwd auth':
-  path    => '/etc/ssh/ssh_config',
-  line    => 'PasswordAuthentication no',
-  match   => 'PasswordAuthentication yes',
-  replace => 'true',
+file_line { 'Turn off passwd auth':
+# specifies the path to the file being modified.
+  path  => '/etc/ssh/ssh_config',
+# defines the line to be modified
+  line  => 'PasswordAuthentication no',
+# specifies a regular expression to match
+  match => '^#PasswordAuthentication',
 }
-file_line {'Use a Identity file':
-  ensure => 'present',
-  path   => '/etc/ssh/ssh_config',
-  line   => 'IdentityFile ~/.ssh/config',
-  match  => '^IdentityFile',
+file_line {'Declare identity file':
+# specifies the path to the file being modified.
+  path  => '/etc/ssh/ssh_config',
+# defines the line to be modified
+  line  => 'IdentityFile ~/.ssh/school',
+# specifies a regular expression to match
+  match => '^#IdentityFile',
 }
