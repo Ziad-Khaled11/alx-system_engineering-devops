@@ -1,4 +1,3 @@
-#!/usr/bin/pup
 # installing a package
 
 package {'python3.8':
