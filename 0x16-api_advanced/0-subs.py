@@ -5,7 +5,7 @@ Uses reddit API to get 10 hot posts
 import requests
 
 
-def top_ten(subreddit):
+def number_of_subscribers(subreddit):
     """Return the total number of subscribers on a given subreddit."""
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     headers = {"User-Agent": "Mozilla/5.0"}
